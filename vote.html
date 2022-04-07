@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+  
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Voting System</title>
+</head>
+  
+<body style="text-align: center;">
+
+
+    <h1> Vote Here</h1>
+  
+    <h4>
+        How to count the number of times a button is clicked?
+    </h4>
+    <h5>
+        (to reset the vote count after it reaches 10; press all the button once again)
+    </h5>
+  
+    <button id="btn">Candidate A</button>
+    <button id="btn1">Candidate B</button>
+    <button id="btn2">Candidate C</button>
+    <button id="reset1">Reset</button>
+    
+  
+    <p>
+        Button A Clicked <span id="display">0</span> Times<br>
+        Button B Clicked <span id="disp1">0</span> Times<br>
+        Button C Clicked <span id="disp2">0</span> Times<br>
+                
+    </p>
+  
+    <script>
+        
+        var count = 0;
+        var count1 = 0;
+        var count2 = 0;
+        var sum = 0;    
+
+  		var max_vote=10;
+  		var win_vote=((max_vote/2)+1);          
+
+        var btn = document.getElementById("btn");
+        var disp = document.getElementById("display");
+
+        var btn1 = document.getElementById("btn1");
+        var disp1 = document.getElementById("disp1");
+
+        var btn2 = document.getElementById("btn2");
+        var disp2 = document.getElementById("disp2");
+        
+        //var reset1 = document.getElementById('reset1').innerHTML=reset();
+
+        reset1.onclick = function() {
+            count=0;
+            count1=0;
+            count2=0;
+            sum = 0;
+            disp.innerHTML = count;
+            disp1.innerHTML = count1;
+            disp2.innerHTML = count2;
+
+            btn.disabled=false;
+            btn1.disabled=false;
+            btn2.disabled=false;
+
+        }
+        
+		lock=function(){
+                btn.disabled=true;
+                btn1.disabled=true;
+                btn2.disabled=true;
+
+//                btn1.onclick=false;
+  //              btn2.onclick=false;
+		}
+
+		higher=function(a1,a2,a3){
+//			if(a1!=a2 && a1!=a3 && a2!=a3){
+				if(a1>a2 && a1>a3){
+					// a1 wins
+	               alert('A Wins!!');
+	               lock();
+
+				}
+				else if(a2>a1 && a2>a3){
+					// a2 wins
+	               alert('B Wins!!');
+	               lock();
+
+				}
+				else {
+					// a3 wins
+		            alert('C Wins!!');
+	                lock();
+				}
+/*			}
+			else {
+				alert('There is tie');
+			} */
+		}
+
+        btn.onclick = function () {
+            count++;
+            disp.innerHTML = count;
+            console.log(sum);
+            sum = count + count1 + count2;
+            if (sum>=10){
+            	higher(count,count1,count2);
+            }
+        }
+
+        btn1.onclick = function () {
+            count1++;
+            disp1.innerHTML = count1;
+            console.log(sum);
+            sum = count + count1 + count2;
+            if (sum>=10){
+            	higher(count,count1,count2);
+            }
+        }
+
+        btn2.onclick = function () {
+            count2++;
+            disp2.innerHTML = count2;
+            console.log(sum);
+            sum = count + count1 + count2;
+            if (sum>=10){
+            	higher(count,count1,count2);
+            }
+        }
+    </script>
+    
+    
+</body>
+  
+</html>
